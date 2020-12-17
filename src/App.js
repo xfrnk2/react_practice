@@ -1,10 +1,12 @@
-import Parent from './family/Parent'
+import TodoList from './todo/todolist';
+// import Parent from './family/Parent'
 
 function App() {
   return (
-    <div classname='App'>
+    <div className='App'>
       Start React Rad
-      <Parent></Parent>
+      <TodoList></TodoList>
+      {/* <Parent></Parent> */}
     </div>
   );
 }

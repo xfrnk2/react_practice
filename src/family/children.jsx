@@ -1,14 +1,16 @@
 import React from 'react';
 import Child from './child'
 
-const Children = ({}) => {
-    return(<div className='children'>
-        children
-        <Child></Child>
-        <Child></Child>
-        <Child></Child>
+const Children = () => {
+    let comments = ['comment1', 'comment2', 'comment3']
+    return (
+        <div className='children'>
+            {
+                comments.map((comment, index) => {
+                    return <Child key={index} comment={comment} />
+                })
+            }
         </div>
-    );
-
+    )
 }
 export default Children

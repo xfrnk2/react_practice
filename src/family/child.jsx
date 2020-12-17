@@ -1,5 +1,7 @@
 import React from 'react';
-const Child = ({ }) => {
-    return (<div className='child'>Child</div>)
+const Child = ({comment}) => {
+    return (<div className='child'>Child
+    {comment}
+    </div>)
 }
 export default Child
