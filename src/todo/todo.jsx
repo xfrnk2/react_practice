@@ -1,10 +1,11 @@
 import React from 'react';
-import axios from'axios';
 
-const Todo = (title, content) => {
+const Todo = (todo) => {
     return (
-    <div className='todo'>Title : {title}
-        Content : {content}
+        
+    <div>
+        Title : {todo.title}
+        Content : {todo.content}
     </div>
     )
 }
