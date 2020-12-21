@@ -1,5 +1,5 @@
-import React, {useEffect, useState, Fragment} from 'react';
-import axios from'axios';
+import React, { useEffect, useState, Fragment } from 'react';
+import axios from 'axios';
 import Todo from './todo';
 
 const TodoList = ({}) => {
@@ -12,19 +12,18 @@ const TodoList = ({}) => {
     });
 
     useEffect(() => {
-
         axios.get("/todos")
-        .then((response) => {
-            setTodos(response.data);
-        })
+            .then((response) => {
+                setTodos(response.data);
+            })
             .catch((error) => {
                 console.log(error);
             });
     }, []);
 
 
-    const changeStatus= () => {
-        if (currentStatus === '열일'){
+    const changeStatus = () => {
+        if (currentStatus === '열일') {
             setCurrentStatus('휴식');
         } else {
             setCurrentStatus('열일');
@@ -38,14 +37,17 @@ const TodoList = ({}) => {
 
     const create = (event) => {
         event.preventDefault();
-        axios.post('./todos', form)
-        .then((response) => {
-            setTodos([...todos, response.data]);
-
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        axios.post('/todos', form)
+            .then((response) => {
+                if(form.title && form.content){
+                    setTodos([...todos, response.data]);
+                } else {
+                    console.log('제목과 내용이 모두 입력되지 않았습니다.')
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     const changeForm = (data) => {
@@ -59,29 +61,40 @@ const TodoList = ({}) => {
 
     return (
         <Fragment>
-        <div>
-            {console.log('todos', todos)}
-            <button onClick={changeWritingMode}>할일 생성</button>
-            {writingMode?
-            <form onSubmit={(event) => {create(event)}}>
-                <input type="text" name="title" placeholder="할일 제목" onChange={(e) => {changeForm(e)}}></input>
-                <input type="text" name="content" placeholder="할일 내용" onChange={(e) => {changeForm(e)}}></input>
-                <button type="submit">등록</button>
-            </form>
-            :
-            null
-            }}
+            <div>
 
-            <button onClick={changeStatus}>{currentStatus}</button>
-            {currentStatus === '휴식'?
-             null
-            :
-            todos.map((todo) => {
-                return <Todo key = {todo.id} todo = {todo.todo}></Todo>;
-            })
-            }
-        </div>    
-        </Fragment>   
+
+                <button onClick={changeStatus}>{currentStatus}</button>
+                {currentStatus === '휴식' ?
+                    null
+                    :
+                    <div>
+                        <div>
+
+                            {writingMode ?
+                                <form onSubmit={(event) => { create(event) }}>
+                                    <input type="text" name="title" placeholder="할일 제목" onChange={(e) => { changeForm(e) }}></input>
+                                    <input type="text" name="content" placeholder="할일 내용" onChange={(e) => { changeForm(e) }}></input>
+                                    <button type="submit">등록</button>
+                                    <button onClick={changeWritingMode}>취소 </button>
+                                </form>
+                                :
+                                <button onClick={changeWritingMode}>할일 생성</button>
+                            }
+
+                        </div>
+                        <div>
+                            {todos.map((todo) => {
+                                return <Todo key={todo.id} todo={todo} todos={todos} setTodos={setTodos}></Todo>
+                                
+                            })}
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+        </Fragment>
     )
 }
 
