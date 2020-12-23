@@ -1,5 +1,6 @@
 import React, {useState, Fragment} from 'react';
 import axios from 'axios';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const Todo = ({todo, todos, setTodos}) => {
     const [editMode, setEditMode] = useState(false);
@@ -53,7 +54,9 @@ const Todo = ({todo, todos, setTodos}) => {
     }
     
     return (
-    <div>
+
+    <Link to={`/tododetail/${todo.id}`}>
+    <div className="todo-box">
         {editMode?
            <form onSubmit={(event) => {update(event)}}>
             <input type="text" name="title" value={form.title} placeholder="할일 제목" onChange={(event) => changeForm(event)}></input>
@@ -70,6 +73,8 @@ const Todo = ({todo, todos, setTodos}) => {
         </div>
         }
     </div>
+    </Link>
+
     )
 }
 export default Todo

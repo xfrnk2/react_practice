@@ -44,6 +44,7 @@ const TodoList = ({}) => {
                 } else {
                     console.log('제목과 내용이 모두 입력되지 않았습니다.')
                 }
+            changeWritingMode()
             })
             .catch((error) => {
                 console.log(error)
