@@ -1,4 +1,3 @@
-import TodoDetail from './tododetail';
 import TodoList from './todolist';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
@@ -8,9 +7,8 @@ const Navigation = () => {
     return (
         <div>
             <BrowserRouter>
-            <Link to={"/todolist"}>gd</Link>
+            <Link to={"/todolist"}>todolist</Link>
             <Route path="/todolist" component={TodoList}></Route>
-            <Route path="/tododetail/:todoinfo" component={TodoDetail}></Route>
             </BrowserRouter>
         </div>
     )

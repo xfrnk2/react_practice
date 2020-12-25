@@ -1,2 +1,4 @@
 .child {margin-bottom:20px; padding:60px; background-color:gray;}
-.todo-box {height:100px; width:300px; background:green; border:1px solid; cursor: pointer;}
+.todo-box {height:100px; width:600px; background:green; border:1px solid;}
+.button-box {width: 30%; float: right;}
+.text-box {width: 50%; float: left; cursor: pointer;}
