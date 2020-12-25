@@ -62,11 +62,23 @@ const Todo = ({todo, todos, setTodos}) => {
         axios.get('/todos/' + todo.id)
         .then((response) => {
             console.log(response.data)
+            
         })
         .catch((error) => {
             console.log(error)})
     }
 
+    const openDetail = (event) =>   {
+        // event.preventDefault(); 있으면 망하는거임.
+        axios.get('/todos/' + todo.id)
+        .then((response) => {
+            
+            console.log(response.data)
+            
+        })
+        .catch((error) => {
+            console.log(error)})
+    }
 
     return (
 
@@ -85,10 +97,15 @@ const Todo = ({todo, todos, setTodos}) => {
            </form>
         :
         <div>
-        <div className="text-box" onClick={(event) => {renderDetail(event)}}>
+        <Link to={{ pathname : `/tododetail/${todo.id}`,
+                    state : {title : todo.title,
+                             content : todo.content}
+        }}>
+        <div className="text-box">
         Title : {todo.title}
         Content : {todo.content}
         </div>
+        </Link>
         <div className="button-box">
         <br></br>
         <button onClick={() => {changeEditMode()}}>수정</button>
@@ -98,7 +115,6 @@ const Todo = ({todo, todos, setTodos}) => {
         </div>
         }
     </div>
-
     )
 }
 export default Todo
