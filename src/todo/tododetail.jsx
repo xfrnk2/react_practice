@@ -1,14 +1,10 @@
-import axios from 'axios';
-
-const TodoDetail = ({match, location}) => {
-    console.log('소환했다.')
-
+const TodoDetail = ({location}) => {
 
     return (
         <div>
-            Title : {location.state.title}}
+            Title : {location.state.title}
             <br></br>
-            Content : {location.state.content}}
+            Content : {location.state.content}
         </div>
     )
 }
